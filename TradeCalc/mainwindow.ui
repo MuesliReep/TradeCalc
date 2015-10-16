@@ -110,7 +110,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEditCalcFee"/>
+       <widget class="QLineEdit" name="lineEditCalcFee">
+        <property name="text">
+         <string>0.2</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -249,7 +253,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEditCalcProfit"/>
+     <widget class="QLineEdit" name="lineEditCalcProfit">
+      <property name="text">
+       <string>0.00001</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
