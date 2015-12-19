@@ -90,17 +90,17 @@ void MainWindow::calcValueChanged(int value) {
 
   // Only update fields that were not changed by the user:
   if(value != 5)
-    ui->lineEditCalcBuyTotal->setText(sSellAmount.setNum(buyTotal,'f',3));
+    ui->lineEditCalcBuyTotal->setText(sSellAmount.setNum(buyTotal,'f',6));
   if(value != 3)
-    ui->lineEditCalcBuyPrice->setText(sBuyPrice.setNum(buyPrice,'f',3));
+    ui->lineEditCalcBuyPrice->setText(sBuyPrice.setNum(buyPrice,'f',6));
   if(value != 1)
     ui->lineEditCalcBuyAmount->setText(sBuyAmount.setNum(buyAmount,'f',8));
   if(value != 6)
     ui->lineEditCalcFee->setText(sFee.setNum(fee,'f',8));
   if(value != 4)
-    ui->lineEditCalcSellTotal->setText(sSellTotal.setNum(sellTotal,'f',3));
+    ui->lineEditCalcSellTotal->setText(sSellTotal.setNum(sellTotal,'f',6));
   if(value != 2)
-    ui->lineEditCalcSellPrice->setText(sSellPrice.setNum(sellPrice,'f',3));
+    ui->lineEditCalcSellPrice->setText(sSellPrice.setNum(sellPrice,'f',6));
   if(value != 0)
     ui->lineEditCalcSellAmount->setText(sSellAmount.setNum(sellAmount,'f',8));
   ui->labelCalcFeeSellAmount->setText(sSellFee.setNum(sellFee,'f',8));
