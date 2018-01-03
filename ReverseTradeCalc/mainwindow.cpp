@@ -36,3 +36,42 @@ void MainWindow::calculateMinimumBuyTrade(double sellPrice, double sellAmount, d
   emit updateLog(workID, "\t Buy Price: \t" + QString::number(*buyPrice) + "\t USD");
   emit updateLog(workID, "\t Buy Total: \t" + QString::number(*buyTotal) + "\t USD");
 }
+
+// abs(sellprice - buyprice) = difference
+/*
+
+variables:
+sellAmount : ! : Needs to be calculated
+sellPrice  :   : Set by user
+sellTotal  : ! : Needs to be calcluated
+
+buyAmount  : ! : Needs to be calculated
+buyPrice   :   : Determined by: sellprice - buySellDifference = buyPrice
+buyTotal   : ! : Needs to be calculated
+
+fee        :   : Set by user
+sellFee    : ! : Needs to be calculated
+buyFee     : ! : Needs to be calculated
+
+buySellDifference : Set by user
+
+sellTotal = (((sellPrice * sellAmount) * (fee / 100))
+buyTotal  = (sellTotal * buyPrice)
+profit    = (buyTotal * (100 - fee) / 100) - sellTotal
+
+difference = abs(sellPrice - buyPrice)
+difference = abs((sellTotal / sellAmount) - (buyTotal / buyAmount))
+difference = abs((sellTotal / sellAmount) - ((sellTotal - sellFee) / (buyNetto / (100.0 - fee)) * 100.0)))
+difference = abs((sellTotal / sellAmount) - ((sellTotal - sellFee) / ((sellAmount + profit) / (100.0 - fee)) * 100.0)))
+difference = abs((sellTotal / sellAmount) - ((sellTotal - (sellTotal  * (fee / 100.0))) / ((sellAmount + profit) / (100.0 - fee)) * 100.0)))
+
+Known variables:
+difference = abs((sellTotal / sellAmount) - ((sellTotal - (sellTotal  * (fee / 100.0))) / ((sellAmount + profit) / (100.0 - fee)) * 100.0)))
+   YES               NO          NO              NO           NO         YES                   NO          NO               YES
+
+buyAmount = buyTotal / buyPrice
+buyAmount = buyTotal / (sellPrice - difference)
+buyAmount = (sellTotal - sellFee) / (sellPrice - difference)
+
+
+*/
