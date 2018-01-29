@@ -119,6 +119,13 @@
      </widget>
     </item>
     <item>
+     <widget class="QCheckBox" name="checkBoxBitstamp">
+      <property name="text">
+       <string>Bitstamp</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
        <widget class="QLabel" name="label_8">

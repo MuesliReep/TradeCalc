@@ -1,11 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
+#include <stdio.h>
+#include <iostream>
+
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
+  bruteForce();
 }
 
 MainWindow::~MainWindow()
@@ -32,9 +37,50 @@ void MainWindow::calculateMinimumBuyTrade(double sellPrice, double sellAmount, d
   *buyTotal = sellNetto;
   *buyPrice = *buyTotal / *buyAmount;
 
-  emit updateLog(workID, "\t Buy Amount: \t" + QString::number(*buyAmount) + "\t BTC");
-  emit updateLog(workID, "\t Buy Price: \t" + QString::number(*buyPrice) + "\t USD");
-  emit updateLog(workID, "\t Buy Total: \t" + QString::number(*buyTotal) + "\t USD");
+  //emit updateLog(workID, "\t Buy Amount: \t" + QString::number(*buyAmount) + "\t BTC");
+  //emit updateLog(workID, "\t Buy Price: \t" + QString::number(*buyPrice) + "\t USD");
+  //emit updateLog(workID, "\t Buy Total: \t" + QString::number(*buyTotal) + "\t USD");
+}
+
+void MainWindow::bruteForce() {
+    double sellPrice = 2.5;
+    double fee = 0.2;
+    double sellAmount;
+    double profit;
+
+    double buyPrice = 0.0;
+    double buyAmount;
+    double buyTotal;
+    double priceDifference = std::numeric_limits<double>::max();
+
+    double bestSellAmount;
+    double bestProfit;
+    double bestBuyPrice;
+    double bestBuyAmount;
+    double bestBuyTotal;
+
+    double maxFunds = 10;
+    double oneSatoshi = 0.00001000;
+
+    for(sellAmount = oneSatoshi; sellAmount < maxFunds; sellAmount += oneSatoshi) {
+        for(profit = oneSatoshi; profit < maxFunds; profit += oneSatoshi) {
+            calculateMinimumBuyTrade(sellPrice, sellAmount, fee, &buyPrice, &buyAmount, &buyTotal, profit);
+
+            if((sellPrice - buyPrice) < priceDifference) {
+
+                bestBuyPrice  = buyPrice;
+                bestBuyAmount = buyAmount;
+                bestBuyTotal  = buyTotal;
+
+                bestSellAmount = sellAmount;
+                bestProfit     = profit;
+
+                priceDifference = (sellPrice - buyPrice);
+            }
+        }
+    }
+
+    std::cout << "Best Price: " << bestBuyPrice << " Best SellAmount: " << bestSellAmount << " Best Profit: " << bestProfit << std::endl;
 }
 
 // abs(sellprice - buyprice) = difference
@@ -69,9 +115,11 @@ Known variables:
 difference = abs((sellTotal / sellAmount) - ((sellTotal - (sellTotal  * (fee / 100.0))) / ((sellAmount + profit) / (100.0 - fee)) * 100.0)))
    YES               NO          NO              NO           NO         YES                   NO          NO               YES
 
-buyAmount = buyTotal / buyPrice
-buyAmount = buyTotal / (sellPrice - difference)
-buyAmount = (sellTotal - sellFee) / (sellPrice - difference)
+
+buyAmount = ((sellAmount + profit) / (100.0 - fee)) * 100.0
+
+sellAmount =
+
 
 
 */

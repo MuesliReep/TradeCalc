@@ -18,6 +18,7 @@ public:
 private:
   Ui::MainWindow *ui;
   void calculateMinimumBuyTrade(double sellPrice, double sellAmount, double fee, double *buyPrice, double *buyAmount, double *buyTotal, double profit);
+  void bruteForce();
 };
 
 #endif // MAINWINDOW_H

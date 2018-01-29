@@ -32,6 +32,8 @@ private:
   void calculateMinimumBuyTrade(double sellPrice, double sellAmount, double fee, double *buyPrice, double *buyAmount, double *buyTotal, double profit = 0.00000001);
   double calculateMinimumSellTrade(double sellPrice, double sellAmount, double fee, double profit = 0.00000001);
   void calculateMinimumBuyTrade2(double sellPrice, double sellAmount, double fee, double *buyPrice, double *buyAmount, double *buyTotal, double profit);
+  void calculateMinimumBuyTrade3(double sellPrice, double sellAmount, double fee, double *buyPrice, double *buyAmount, double *buyTotal, double profit);
+  double calculateBitstampFee(double orderTotal);
 };
 
 #endif // MAINWINDOW_H
